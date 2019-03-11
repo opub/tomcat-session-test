@@ -1,0 +1,28 @@
+version: "3"
+
+# Docker Compose to launch PostgreSQL, HAProxy and three Tomcat containers for session replication testing.
+# The number of Tomcats is not critical but since the test page makes two requests it is better to have an 
+# odd number so roundrobin of the requests for a single user doesn't always end up on the same instances.
+
+services:
+
+  tomcat1:
+    build: tomcat
+    ports:
+      - "8081:8080"
+
+  tomcat2:
+    build: tomcat
+    ports:
+      - "8082:8080"
+
+  tomcat3:
+    build: tomcat
+    ports:
+      - "8083:8080"
+
+  proxy:
+    build: haproxy
+    ports:
+      - "80:80"
+      - "1936:1936"
