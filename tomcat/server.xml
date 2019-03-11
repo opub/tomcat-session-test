@@ -27,6 +27,25 @@
 
       <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
 
+      <Manager className="org.apache.catalina.session.PersistentManager"           
+        maxIdleBackup="1"
+        minIdleSwap="0"
+        maxIdleSwap="1"
+        processExpiresFrequency="1"
+        saveOnRestart="true">
+
+        <Store className="org.apache.catalina.session.JDBCStore"                
+                connectionURL="jdbc:postgresql://database:5432/postgres?user=postgres&amp;password=CHANGEME"
+                driverName="org.postgresql.Driver"
+                sessionAppCol="app_name"
+                sessionDataCol="session_data"
+                sessionIdCol="session_id"
+                sessionLastAccessedCol="last_access"
+                sessionMaxInactiveCol="max_inactive"
+                sessionTable="tomcat_sessions"
+                sessionValidCol="valid_session" />
+        </Manager>
+
       <Realm className="org.apache.catalina.realm.LockOutRealm">
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>

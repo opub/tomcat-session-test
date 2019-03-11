@@ -9,6 +9,7 @@ ENV TOMCAT_MAJOR 7
 # setup environment
 ENV CATALINA_HOME /opt/tomcat 
 ENV PATH $PATH:$CATALINA_HOME/bin
+ENV JAVA_OPTS -Dorg.apache.catalina.session.StandardSession.ACTIVITY_CHECK=true
 
 # install prereqs
 RUN yum -y install wget tar java-1.8.0-openjdk

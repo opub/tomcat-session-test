@@ -6,6 +6,13 @@ version: "3"
 
 services:
 
+  database:
+    build: postgresql
+    environment:
+      POSTGRES_PASSWORD: CHANGEME
+    ports:
+      - "5433:5432"
+
   tomcat1:
     build: tomcat
     ports:
