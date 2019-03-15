@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+    <!-- The Manager and Store elements below are the key changes to enable database persistence of sessions -->
+
+    <!-- maxIdleBackup required to persist sessions to store -->
+    <Manager className="org.apache.catalina.session.PersistentManager" maxIdleBackup="0">
+
+        <!-- database connection and table information for persisting sessions -->
+        <Store className="org.apache.catalina.session.JDBCStore"                
+            connectionURL="jdbc:postgresql://database:5432/postgres?user=postgres&amp;password=CHANGEME"
+            driverName="org.postgresql.Driver"
+            sessionAppCol="app_name"
+            sessionDataCol="session_data"
+            sessionIdCol="session_id"
+            sessionLastAccessedCol="last_access"
+            sessionMaxInactiveCol="max_inactive"
+            sessionTable="tomcat_sessions"
+            sessionValidCol="valid_session" />
+    
+    </Manager>
+
+</Context>

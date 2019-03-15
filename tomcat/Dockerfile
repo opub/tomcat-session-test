@@ -21,6 +21,9 @@ RUN wget -q -N http://mirror.linux-ia64.org/apache/tomcat/tomcat-${TOMCAT_MAJOR}
  rm -f apache-tomcat-${TOMCAT_VERSION}.tar.gz
 
 # custom configs with session setup
+COPY postgresql-42.2.5.jar /opt/tomcat/lib/postgresql-42.2.5.jar
+COPY context.xml ${CATALINA_HOME}/conf/context.xml
+COPY logging.properties ${CATALINA_HOME}/conf/logging.properties
 COPY server.xml ${CATALINA_HOME}/conf/server.xml
 
 # custom home page with session details
